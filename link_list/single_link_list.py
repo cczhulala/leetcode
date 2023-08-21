@@ -67,9 +67,33 @@ class SingleLinkList:
             node.next=cur.next
             cur.next=node
     def remove(self,item):
-        pass
+        cur=self.__head
+        pre=None
+        while cur != None:
+            if cur.elem!=item:
+                    pre=cur
+                    cur=cur.next
+            else:
+                #判断是否为头结点
+                if pre==None:
+                    self.__head=cur.next
+                    return
+                else:
+                    pre.next=cur.next
+                    return
+
+
+
     def search(self,item):
-        pass
+        cur = self.__head
+        count=0
+        while cur != None:
+            if cur.elem==item:
+                return print('yes,pos is {}'.format(count))
+            cur=cur.next
+            count += 1
+        return print('Can\'t find')
+
 
 if __name__=="__main__":
     ll=SingleLinkList()
@@ -88,4 +112,10 @@ if __name__=="__main__":
     ll.insert(-1,-1)
     ll.insert(10,10)
     ll.travel()
-    
+    ll.search(11)
+    ll.remove(-1)
+    ll.travel()
+    ll.remove(2)
+    ll.travel()
+    ll.remove(10)
+    ll.travel()
